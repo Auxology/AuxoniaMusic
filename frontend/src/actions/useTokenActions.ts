@@ -10,7 +10,6 @@ async function generateApiToken(accessToken: string) {
             }
         }
     )
-    console.log(response.data);
     return response.data;
 }
 

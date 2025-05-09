@@ -6,4 +6,5 @@ const ApiTokenRoute:Router = Router();
 
 ApiTokenRoute.post("/generate", isAuthenticated, generateApiToken)
 
+
 export default ApiTokenRoute;

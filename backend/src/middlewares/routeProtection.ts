@@ -33,6 +33,26 @@ export async function isAuthenticated(req:Request, res:Response, next:NextFuncti
 
 
     // @ts-ignore
+    // TODO:Fix This Type
     req.user = user;
+    next();
+}
+
+export async function apiTokenProtection(req:Request, res:Response, next:NextFunction):Promise<void> {
+    // @ts-ignore
+    const user = req.user
+
+    const {error} = await supabaseAdmin.rpc('check_and_increment_usage', { in_user: user.id });
+
+    if (error) {
+
+        if (error.message === 'limit_exceeded') {
+            res.status(429).json({ error: 'API usage limit exceeded' });
+            return;
+        }
+            res.status(401).json({ error: 'Invalid or missing API token' });
+            return;
+    }
+
     next();
 }

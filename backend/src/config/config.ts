@@ -9,6 +9,7 @@ interface Config {
     origin: string;
     supabaseURL: string;
     supabaseRoleKey: string;
+    databaseURL: string;
 }
 
 const config: Config = {
@@ -16,7 +17,8 @@ const config: Config = {
     nodeEnv: process.env.NODE_ENV || 'development',
     origin: process.env.ORIGIN || 'http://localhost:5173',
     supabaseURL: process.env.SUPABASE_URL!,
-    supabaseRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!
+    supabaseRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    databaseURL: process.env.DATABASE_URL!
 };
 
 export default config;
