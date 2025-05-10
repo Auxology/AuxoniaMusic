@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { QueryClientProvider, QueryClient,  } from "@tanstack/react-query";
+import { ThemeProvider } from '@/components/theme-provider'
 
 const queryClient = new QueryClient();
 
@@ -11,10 +12,12 @@ export const Route = createRootRoute({
 
 function RootComponent() {
   return (
-    <React.Fragment>
-      <QueryClientProvider client={queryClient}>
-          <Outlet />
-      </QueryClientProvider>
-    </React.Fragment>
+    <ThemeProvider defaultTheme={"dark"}>
+        <React.Fragment>
+            <QueryClientProvider client={queryClient}>
+                <Outlet />
+            </QueryClientProvider>
+        </React.Fragment>
+    </ThemeProvider>
   )
 }

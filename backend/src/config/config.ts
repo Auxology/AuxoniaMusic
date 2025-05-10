@@ -8,7 +8,7 @@ interface Config {
     nodeEnv: string;
     origin: string;
     supabaseURL: string;
-    supabaseRoleKey: string;
+    supabaseKey: string;
     databaseURL: string;
 }
 
@@ -17,7 +17,7 @@ const config: Config = {
     nodeEnv: process.env.NODE_ENV || 'development',
     origin: process.env.ORIGIN || 'http://localhost:5173',
     supabaseURL: process.env.SUPABASE_URL!,
-    supabaseRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    supabaseKey: process.env.SUPABASE_KEY!,
     databaseURL: process.env.DATABASE_URL!
 };
 

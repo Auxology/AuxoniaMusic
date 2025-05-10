@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import {supabaseAdmin} from "../utils/supabase"
+import {supabase} from "../utils/supabase"
 
 
 export async function isAuthenticated(req:Request, res:Response, next:NextFunction):Promise<void> {
@@ -20,7 +20,7 @@ export async function isAuthenticated(req:Request, res:Response, next:NextFuncti
     }
 
 
-    const { data: { user }, error } = await supabaseAdmin.auth.getUser(token);
+    const { data: { user }, error } = await supabase.auth.getUser(token);
 
     if (error) {
         res.status(401).json({message: "Unauthorized"});
@@ -42,7 +42,7 @@ export async function apiTokenProtection(req:Request, res:Response, next:NextFun
     // @ts-ignore
     const user = req.user
 
-    const {error} = await supabaseAdmin.rpc('check_and_increment_usage', { in_user: user.id });
+    const {error} = await supabase.rpc('check_and_increment_usage', { in_user: user.id });
 
     if (error) {
 

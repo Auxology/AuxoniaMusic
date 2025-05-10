@@ -1,8 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import config from "../config/config";
 
-export const supabaseAdmin = createClient(
-    config.supabaseURL,
-    config.supabaseRoleKey
-);
+const supabaseUrl = config.supabaseURL;
+const supabaseKey = config.supabaseKey;
 
+export const supabase = createClient(supabaseUrl, supabaseKey);

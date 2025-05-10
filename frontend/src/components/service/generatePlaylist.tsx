@@ -5,9 +5,10 @@ import {useGeneratePlaylists} from "@/actions/useServiceAction.ts";
 
 interface GeneratePlaylistAreaProps {
     accessToken: string;
+    providerToken: string;
 }
 
-export function GeneratePlaylistArea({accessToken}: GeneratePlaylistAreaProps) {
+export function GeneratePlaylistArea({accessToken, providerToken}: GeneratePlaylistAreaProps) {
     const {mutate: generatePlaylist, isPending} = useGeneratePlaylists();
 
     async function handleClick() {
@@ -25,7 +26,7 @@ export function GeneratePlaylistArea({accessToken}: GeneratePlaylistAreaProps) {
             return;
         }
 
-        generatePlaylist({accessToken, prompt})
+        generatePlaylist({accessToken, providerToken, prompt})
     }
 
     return (

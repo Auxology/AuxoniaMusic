@@ -3,17 +3,19 @@ import { axiosInstance } from '@/lib/axios';
 
 interface GeneratePlaylistsProps {
     accessToken: string;
+    providerToken: string;
     prompt: string;
 }
 
-async function generatePlaylists({accessToken, prompt}: GeneratePlaylistsProps):Promise<void> {
+async function generatePlaylists({accessToken, providerToken, prompt}: GeneratePlaylistsProps):Promise<void> {
     const response = await axiosInstance.post("/service/generate-playlist",
         {
             prompt: prompt
         },
         {
             headers: {
-                Authorization: `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`,
+                'x-provider-token': providerToken
             }
         }
     )

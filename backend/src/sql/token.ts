@@ -23,3 +23,22 @@ export async function sqlGenerateApiToken(userId: string): Promise<boolean | str
         return e instanceof Error ? e.message : 'An unknown error occurred';
     }
 }
+
+export async function sqlGetApiToken(userId:string) {
+    try {
+        const token = await sql`
+            SELECT id from public.api_tokens
+            WHERE user_id = ${userId}
+        `;
+
+        if (token.length === 0) {
+            console.error("Token not found");
+        }
+
+        return token[0].id;
+    }
+    catch (e) {
+        console.error(e);
+        return e instanceof Error ? e.message : 'An unknown error occurred';
+    }
+}

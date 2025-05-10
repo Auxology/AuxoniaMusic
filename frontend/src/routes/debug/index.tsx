@@ -24,6 +24,7 @@ function RouteComponent() {
 
           <GeneratePlaylistArea
               accessToken={data?.sessionData?.session?.access_token}
+              providerToken={data?.sessionData?.session?.provider_token}
           />
 
       </div>
